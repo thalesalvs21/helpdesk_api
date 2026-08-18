@@ -10,18 +10,15 @@ app.config["SECRET_KEY"] = 'minhachavesupersecretaqueninguemvaidescobrir'
 
 db.init_app(app)
 
-# ==========================================
-# ROTAS DE USUÁRIOS (com endpoint explícito)
-# ==========================================
+
+
 app.add_url_rule('/usuarios', endpoint='usuario_listar', view_func=UsuarioController.listar, methods=['GET'])
 app.add_url_rule('/usuarios', endpoint='usuario_cadastrar', view_func=UsuarioController.cadastrar, methods=['POST'])
 app.add_url_rule('/usuarios/<int:id>', endpoint='usuario_atualizar', view_func=UsuarioController.atualizar, methods=['PUT'])
 app.add_url_rule('/usuarios/<int:id>', endpoint='usuario_excluir', view_func=UsuarioController.excluir, methods=['DELETE'])
 app.add_url_rule('/usuarios/<int:id>/chamados', endpoint='usuario_listar_chamados', view_func=UsuarioController.listar_chamados, methods=['GET'])
 
-# ==========================================
-# ROTAS DE CHAMADOS (com endpoint explícito)
-# ==========================================
+
 app.add_url_rule('/chamados', endpoint='chamado_listar', view_func=ChamadoController.listar, methods=['GET'])
 app.add_url_rule('/chamados', endpoint='chamado_cadastrar', view_func=ChamadoController.cadastrar, methods=['POST'])
 app.add_url_rule('/chamados/<int:id>', endpoint='chamado_atualizar', view_func=ChamadoController.atualizar, methods=['PUT'])
@@ -32,7 +29,7 @@ app.add_url_rule('/chamados/abertos', endpoint='chamado_listar_abertos', view_fu
 app.add_url_rule('/chamados/prioridade/alta', endpoint='chamado_listar_prioridade_alta', view_func=ChamadoController.listar_prioridade_alta, methods=['GET'])
 app.add_url_rule('/estatisticas', endpoint='chamado_estatisticas', view_func=ChamadoController.estatisticas, methods=['GET'])
 
-# Criação das tabelas
+
 with app.app_context():
     db.create_all()
 
